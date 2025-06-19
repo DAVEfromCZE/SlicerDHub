@@ -1,111 +1,98 @@
-SlicerDHub
+# SlicerDHub
 
-Hlavní výhodou aplikace je, že umožňuje uživatelům Fusion 360 exportovat modely a následně je jednoduše odeslat do různých slicerů, které nejsou oficiálně podporovány.
+**SlicerDHub** is an application that allows Fusion 360 users to export models and easily send them to various slicers that are not officially supported.
 
-Hlavní funkce
+[Project homepage](https://github.com/HDaveSoft/SlicerDHub)
 
-Uložení exportovaného modelu do zvolené složky
+## Main Features
 
-Spuštění sliceru s předáním exportovaného souboru
+- Save the exported model to a chosen folder
+- Launch the slicer and pass the exported file
+- Simple GUI with tile-based slicer selection
+- Add and remove slicers directly from the app
+- Automatic slicer icon detection (from .exe file)
+- Support for light, dark, or system theme
+- "Edit" mode to manage slicer tiles
 
-Jednoduché GUI s podporou dlaždic pro slicery
+#### Tested slicers:
 
-Možnost přidat a odebrat slicery přímo z aplikace
+- Bambu Studio
+- Orca Slicer
+- IdeaMaker
+- PrusaSlicer / Prusa Studio
 
-Automatické rozpoznánání ikon sliceru (z .exe souboru)
+(More will be added gradually)
 
-Podpora světlého, tmavého nebo systémového tématu
+## Requirements
 
-Režim "editace" pro správu dlaždic
+- Windows 10/11
+- Python 3.10+ (64-bit recommended)
+- Required packages:
+  - `customtkinter`
+  - `Pillow`
+  - `pywin32`
+  - `pyinstaller` (for compilation)
 
+## Installation and Launch
 
+### 1. Clone the repository
 
-Vyzkoušené slicery:
-
-Bambu Studio
-
-Orca Slicer
-
-IdeaMaker
-
-PrusaSlicer / Prusa Studio
-
-(Postupně budou přidávány další)
-
-Požadavky
-
-Windows 10/11
-
-Python 3.10+ (doporučeno 64bit)
-
-Nainstalován balíček:
-
-customtkinter
-
-Pillow
-
-pywin32
-
-pyinstaller (pro kompilaci)
-
-Instalace a spuštění
-
-1. Stažni repozitáře
-
+```
 git clone https://github.com/HDaveSoft/slicerdhub.git
 cd slicerdhub
+```
 
-2. Spuštění verze v Pythonu
+### 2. Run the Python version
 
+```
 python slicerdhub.py
+```
 
-3. Vytvoření spustitelného .exe (volitelné)
+### 3. Create an executable .exe (optional)
 
+```
 build.bat
+```
 
-Soubor slicerdhub.exe bude v podadresáři dist/
+The `slicerdhub.exe` file will be located in the `dist/` folder.
 
-Jak funguje
+## How it works
 
-Pokud aplikace spustíte ručně, otevře se GUI s možností přidat slicery nebo možnost uložit soubor.
+- If launched manually, the GUI opens where you can add slicers or save a file
+- If integrated with Fusion 360's export, it receives a file path and opens a slicer with that file
 
-Pokud je SlicerDHub spojen s exportem (ve Fusion 360), předá soubor jako argument a po zvolení sliceru se tento soubor předá sliceru.
+## Settings
 
-Nastavení
+- Option to auto-close the hub after launching a slicer
+- Theme selection (light, dark, system)
+- Data is stored in `~/.slicerdhub/config.json`
 
-V aplikaci můžete zapnout/vypnout automatické zavření po spuštění sliceru
+## Author
 
-Možnost změnit motiv (světlý, tmavý, systémový)
+David H. (HDaveSoft)
 
-Data se ukládají do ~/.slicerdhub/config.json
+Icon and design: AI-generated and manually adjusted for the project
 
-Autor
+If this app helped you, you can support me here: [https://coff.ee/hdavesoft](https://coff.ee/hdavesoft)
 
-David H (HDaveSoft)
+## License
 
-Ikonka a grafické zpracování: Vygenerováno s pomocí AI, upraveno pro potřeby projektu.
+This project is licensed under the **Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0)** license.
 
-Licence
+This means:
 
-Tento projekt je licencován pod licencí Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0).
+- You can freely use and modify the app for non-commercial purposes
+- You must credit the original author (HDaveSoft) and include this license
+- You may not sell the software or accept donations without crediting the author and linking: [https://coff.ee/hdavesoft](https://coff.ee/hdavesoft)
+- Any changes must be shared under the same license
 
-To znamená:
+Details: [https://creativecommons.org/licenses/by-nc-sa/4.0/](https://creativecommons.org/licenses/by-nc-sa/4.0/)
 
-Můžete aplikaci volně používat a upravovat pro nekomerční účely
+---
 
-Musíte zachovat odkaz na původního autora (HDaveSoft) a tuto licenci
+## TODO
 
-Nesmíte software prodávat ani vybírat dary bez uvedení původního autora a odkazu: https://coff.ee/hdavesoft
-
-Změny musí být šířeny pod stejnou licencí
-
-Podrobnosti: https://creativecommons.org/licenses/by-nc-sa/4.0/
-
-TODO
-
-Podpora drag & drop
-
-Možnost přetáhnout STL přímo na dlaždici sliceru
-
-Verze pro MacOS
+- Drag & drop support
+- Ability to drag STL directly onto slicer tile
+- MacOS version
 
