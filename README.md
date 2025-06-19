@@ -61,6 +61,19 @@ The `slicerdhub.exe` file will be located in the `dist/` folder.
 - If launched manually, the GUI opens where you can add slicers or save a file
 - If integrated with Fusion 360's export, it receives a file path and opens a slicer with that file
 
+## Fusion 360 Integration
+
+To use SlicerDHub from within Fusion 360:
+
+1. Choose **File > Save as Mesh**
+2. In the dialog:
+   - Under **Preparation type**, select **Print Utility**
+   - Under **Output application**, select **Custom**
+   - Browse and select `slicerdhub.exe` as the target
+3. Click **OK** to confirm
+
+This will launch SlicerDHub with the exported model ready to be sliced.
+
 ## Settings
 
 - Option to auto-close the hub after launching a slicer
