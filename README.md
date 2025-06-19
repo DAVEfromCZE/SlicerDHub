@@ -2,7 +2,7 @@
 
 **SlicerDHub** is an application that allows Fusion 360 users to export models and easily send them to various slicers that are not officially supported.
 
-[Project homepage](https://github.com/HDaveSoft/SlicerDHub) | [🇨🇿 Česká verze](README.md)
+[Project homepage](https://github.com/DAVEfromCZE/SlicerDHub) | [🇨🇿 Česká verze](README.cz.md)
 
 ## Main Features
 
@@ -38,7 +38,7 @@
 ### 1. Clone the repository
 
 ```
-git clone https://github.com/HDaveSoft/slicerdhub.git
+git clone https://github.com/DAVEfromCZE/SlicerDHub.git
 cd slicerdhub
 ```
 
