@@ -32,7 +32,7 @@ def extract_icon_from_exe(exe_path):
         image = Image.frombuffer('RGB', (bmpinfo['bmWidth'], bmpinfo['bmHeight']), bmpstr, 'raw', 'BGRX', 0, 1)
         return image.resize((48, 48))
     except Exception as e:
-        print(f"Chyba při načítání ikony: {e}")
+        print(f"Error loading icon: {e}")
         return None
 
 class SlicerHubApp(ctk.CTk):
@@ -44,7 +44,7 @@ class SlicerHubApp(ctk.CTk):
             try:
                 self.iconbitmap(ico_path)
             except Exception as e:
-                print(f"Nepodařilo se nastavit ikonu: {e}")
+                print(f"Failed to set icon: {e}")
 
         self.title("SlicerDHub")
 
@@ -71,25 +71,25 @@ class SlicerHubApp(ctk.CTk):
         button_panel = ctk.CTkFrame(self)
         button_panel.pack(pady=10)
 
-        edit_button = ctk.CTkButton(button_panel, text="✏️ Upravit", command=self.toggle_edit_mode)
+        edit_button = ctk.CTkButton(button_panel, text="✏️ Edit", command=self.toggle_edit_mode)
         edit_button.pack(side="left", padx=5)
 
         self.submenu_frame = ctk.CTkFrame(button_panel)
         self.submenu_frame.pack_forget()
 
-        self.add_button = ctk.CTkButton(self.submenu_frame, text="➕ Přidat slicer", command=self.add_slicer)
+        self.add_button = ctk.CTkButton(self.submenu_frame, text="➕ Add slicer", command=self.add_slicer)
         self.add_button.pack(padx=5, pady=2)
 
-        self.save_button = ctk.CTkButton(self.submenu_frame, text="💾 Přidat uložení", command=self.add_save_button)
+        self.save_button = ctk.CTkButton(self.submenu_frame, text="💾 Add save", command=self.add_save_button)
         self.save_button.pack(padx=5, pady=2)
 
-        settings_button = ctk.CTkButton(button_panel, text="⚙️ Nastavení", command=self.open_settings)
+        settings_button = ctk.CTkButton(button_panel, text="⚙️ Settings", command=self.open_settings)
         settings_button.pack(side="left", padx=5)
 
         donate_button = ctk.CTkButton(self, text="Buy Me a Coffee ☕", command=self.open_donate)
         donate_button.pack(pady=(0, 5))
 
-        author_label = ctk.CTkLabel(self, text="HDaveSoft  |  Verze 0.32")
+        author_label = ctk.CTkLabel(self, text="HDaveSoft  |  Version 0.33")
         author_label.pack(pady=(0, 10))
 
         self.after(100, self.center_window)
@@ -100,7 +100,7 @@ class SlicerHubApp(ctk.CTk):
             with open(CONFIG_FILE, "w", encoding="utf-8") as f:
                 json.dump(data, f, indent=4, ensure_ascii=False)
         except Exception as e:
-            print(f"Chyba při ukládání settings.json: {e}")
+            print(f"Error saving settings.json: {e}")
 
     def load_slicers(self):
         return self.slicers
@@ -109,7 +109,7 @@ class SlicerHubApp(ctk.CTk):
         self.save_settings()
 
     def add_save_button(self):
-        dialog = ctk.CTkInputDialog(text="Zadej název pro uložení:", title="Název uložení")
+        dialog = ctk.CTkInputDialog(text="Enter name for save:", title="Save name")
         dialog.update_idletasks()
         screen_width = self.winfo_screenwidth()
         screen_height = self.winfo_screenheight()
@@ -174,9 +174,9 @@ class SlicerHubApp(ctk.CTk):
         self.render_buttons()
 
     def add_slicer(self):
-        path = filedialog.askopenfilename(title="Vyber .exe sliceru", filetypes=[("Executable Files", "*.exe")])
+        path = filedialog.askopenfilename(title="Select .exe file of slicer", filetypes=[("Executable Files", "*.exe")])
         if path:
-            dialog = ctk.CTkInputDialog(text="Zadej vlastní název sliceru:", title="Název sliceru")
+            dialog = ctk.CTkInputDialog(text="Enter slicer name:", title="Slicer name")
             dialog.geometry("400x160")
             name = dialog.get_input()
             if name:
@@ -198,17 +198,17 @@ class SlicerHubApp(ctk.CTk):
             export_file = sys.argv[1]
             if path == "__save__":
                 save_path = filedialog.asksaveasfilename(
-                    title="Uložit soubor jako",
+                    title="Save file as",
                     initialfile=os.path.basename(export_file),
                     defaultextension=os.path.splitext(export_file)[1],
-                    filetypes=[("Všechny soubory", "*.*")]
+                    filetypes=[("All files", "*.*")]
                 )
                 if save_path:
                     try:
                         with open(export_file, "rb") as src, open(save_path, "wb") as dst:
                             dst.write(src.read())
                     except Exception as e:
-                        print(f"Chyba při ukládání souboru: {e}")
+                        print(f"Error saving file: {e}")
             else:
                 subprocess.Popen([path, export_file], shell=True)
                 if self.settings.get("close_on_launch", True):
@@ -227,7 +227,7 @@ class SlicerHubApp(ctk.CTk):
     def open_settings(self):
         settings_window = ctk.CTkToplevel(self)
         self.settings_window = settings_window
-        settings_window.title("Nastavení")
+        settings_window.title("Settings")
         settings_window.geometry("300x200")
         settings_window.resizable(False, False)
         settings_window.transient(self)
@@ -235,14 +235,14 @@ class SlicerHubApp(ctk.CTk):
 
         checkbox = ctk.CTkCheckBox(
             master=settings_window,
-            text="Zavřít SlicerDHub po spuštění sliceru",
+            text="Close SlicerDHub after slicer launch",
             command=lambda: self.toggle_close_on_launch(var.get())
         )
         var = ctk.BooleanVar(value=self.settings.get("close_on_launch", True))
         checkbox.configure(variable=var)
         checkbox.pack(pady=10)
 
-        theme_label = ctk.CTkLabel(settings_window, text="Motiv:")
+        theme_label = ctk.CTkLabel(settings_window, text="Theme:")
         theme_label.pack(pady=(10, 2))
         theme_option = ctk.CTkOptionMenu(settings_window, values=["System", "Light", "Dark"], command=self.set_theme)
         theme_option.set(self.settings.get("theme", "System"))
@@ -270,7 +270,7 @@ class SlicerHubApp(ctk.CTk):
                     self.slicers = data.get("slicers", [])
                     return data.get("settings", {})
             except Exception as e:
-                print(f"Chyba při načítání config.json: {e}")
+                print(f"Error loading config.json: {e}")
         self.slicers = []
         return {"close_on_launch": True, "theme": "System"}
 
