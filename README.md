@@ -8,8 +8,8 @@
 
 ## Main Features
 
-- Save the exported model to a chosen folder
 - Launch the slicer and pass the exported file
+- Save the exported model to a chosen folder
 - Simple GUI with tile-based slicer selection
 - Add and remove slicers directly from the app
 - Automatic slicer icon detection (from .exe file)
